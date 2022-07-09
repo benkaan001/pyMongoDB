@@ -18,10 +18,10 @@ def create_table(table_query):
 
 
 
-department_table= """CREATE TABLE department (
-                 dep_id INT PRIMARY KEY,
-                 dep_name VARCHAR(20),
-                 dep_location VARCHAR(15)
+department_table= """CREATE TABLE IF NOT EXISTS department (
+                 dept_id INT PRIMARY KEY,
+                 dept_name VARCHAR(20),
+                 dept_location VARCHAR(15)
                  )"""
 
 employees_table= """CREATE TABLE employees (
@@ -32,7 +32,7 @@ employees_table= """CREATE TABLE employees (
                  hire_date DATE,
                  salary DOUBLE(10,2),
                  commission DOUBLE(7,2),
-                 dept_id INTEGER REFERENCES department_table(dept_id)
+                 dept_id INTEGER REFERENCES department(dept_id)
                  )"""
 
 salary_grade_table="""CREATE TABLE salary_grade (
@@ -41,11 +41,11 @@ salary_grade_table="""CREATE TABLE salary_grade (
                  max_salary INT
                  )"""
 
-# create_table(department_table)
+create_table(department_table)
 
 # create_table(employees_table)
 
-create_table(salary_grade_table)
+# create_table(salary_grade_table)
 
 
 
