@@ -6,13 +6,15 @@ load_dotenv(find_dotenv())
 
 
 # second arg is optional default
-password=os.getenv('MYSQL_PWD')
+password=os.getenv("MYSQL_PWD")
 
 
-connection = mysql.connector.connect(host='localhost', user='root', password=password, database='Computers')
+
+
+connection = mysql.connector.connect(host="localhost", user="root", password=password, database='Computers')
 cursor = connection.cursor()
-query= 'SELECT * FROM computers.computer'
-cursor.execute(query)
+sample_query= 'SELECT * FROM computers.computer'
+cursor.execute(sample_query)
 
 # print(cursor.fetchone())
 # print(cursor.fetchmany())
