@@ -8,7 +8,7 @@ def get_database():
     load_dotenv(find_dotenv())
     password=os.getenv("MYSQL_PWD")
 
-    connection = mysql.connector.connect(host="localhost", user="root", password=password, database='employee_db')
+    connection = mysql.connector.connect(host="localhost", user="root", password=password, database='hr')
 
 
     return connection
