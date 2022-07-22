@@ -31,6 +31,15 @@ senior_manager_query ="""
 
             """
 
+senior_maanger_alternative_query ="""
+                                SELECT d.department_name, CONCAT(first_name," ", last_name) name, e.salary,
+                                ROUND ((DATEDIFF(now(), hire_date))/365 ,1)experience
+                                FROM departments d
+                                JOIN employees e
+                                ON (d.manager_id = e.employee_id)
+                                HAVING experience > 15
+                                """
+
 
 get_senior_managers(senior_manager_query)
 
