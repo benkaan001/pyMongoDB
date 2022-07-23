@@ -1,4 +1,33 @@
+import mysql.connector
+from config import get_database
 
+def find_senior_emps(query):
+    connection=get_database()
+    cursor=connection.cursor()
+    try:
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for record in records:
+            print(record)
+        connection.commit()
+    except mysql.connector.Error as error:
+        print(f".......ERROR....{error}")
+    finally:
+        cursor.close()
+        connection.close()
+        print(".......Connection closed SUCCESSFULLY!")
+
+# write a SQL query to find those employees whose experience is more than 27 years in ascending order.
+
+senior_emps_query ="""
+                        SELECT *
+                        FROM employees
+                        WHERE TIMESTAMPDIFF( YEAR, hire_date, CURDATE() ) > 27
+                        ORDER BY hire_date ASC;
+                        """
+
+
+find_senior_emps(senior_emps_query)
 '''
 (63679, 'SANDRINE', 'CLERK', 69062, datetime.date(1990, 12, 18), 900.0, None, 2001)
 (64989, 'ADELYN', 'SALESMAN', 66928, datetime.date(1991, 2, 20), 1700.0, 400.0, 3001)
