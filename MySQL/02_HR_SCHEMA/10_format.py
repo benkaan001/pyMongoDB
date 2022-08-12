@@ -18,10 +18,8 @@ def format(query):
         print(".......Connection closed SUCCESSFULLY!")
 
 
-three_digit_seperated= """
-        SELECT FORMAT(9999999, 'N', 'en-us') AS 'Number'
-        """
+format_query = """
+            SELECT FORMAT(100500.5634, 2) AS 'NUM'
+            """
 
-# ('9,999,999',)
-
-format(three_digit_seperated)
+format(format_query) # ('100,500.56',)

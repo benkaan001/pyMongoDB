@@ -18,13 +18,14 @@ def get_conditional_bonus(query):
         print(".......Connection closed SUCCESSFULLY!")
 
 # Multi conditional bonus
-# Formatted 000,000
+# Formatted
+# Converted int to char
 conditional_bonus_query = """
             SELECT j.job_title, e.first_name, e.salary,
             CASE
-	            WHEN job_title LIKE('%Manager%') AND salary < 10000 THEN CONVERT(FORMAT((salary * 0.2), 'N', 'en-us'),CHAR)
-                WHEN job_title LIKE('%Clerk%') THEN CONVERT(FORMAT((salary * 0.3), 'N', 'en-us'),CHAR)
-                WHEN job_title LIKE('%Clert%') AND salary < 3000 THEN CONVERT(FORMAT((salary * 0.5), 'N','en-us'), CHAR)
+	            WHEN job_title LIKE('%Manager%') AND salary < 10000 THEN CONVERT(FORMAT((salary * 0.2),2),CHAR)
+                WHEN job_title LIKE('%Clerk%') THEN CONVERT(FORMAT((salary * 0.3),2),CHAR)
+                WHEN job_title LIKE('%Clert%') AND salary < 3000 THEN CONVERT(FORMAT((salary * 0.5), 2), CHAR)
 	            ELSE 'Come Back Next Year'
             END bonus
             FROM jobs j
