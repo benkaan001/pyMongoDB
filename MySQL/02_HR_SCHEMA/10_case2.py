@@ -1,7 +1,7 @@
 import mysql.connector
 from config import get_database
 
-def get_new_salaries(query):
+def get_total_raise(query):
     connection=get_database()
     cursor=connection.cursor()
     try:
@@ -20,8 +20,16 @@ def get_new_salaries(query):
 # calculate the total raise
 
 raise_query ="""
+            SELECT employee_id, first_name, job_id, salary,
+            CASE job_id
+                WHEN 'IT_PROG' THEN salary * 1.5 - salary
+                WHEN 'PU_CLERK%' OR 'ST_CLERK' OR 'SH_CLERK' THEN salary * 1.25 - salary
+                WHEN  'SA_REP' OR 'MK_REP' OR 'HR_REP' THEN salary * 1.2 - salary
+                ELSE salary * 1.4 - salary
+            END total_raise
+FROM employees
 
             """
 
 
-get_new_salaries(raise_query)
+get_total_raise(raise_query)
