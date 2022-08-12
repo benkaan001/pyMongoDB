@@ -26,6 +26,8 @@ def get_new_salaries(query):
                    ALL ELSE                              - 40%
 
 """
+
+# 'OR' option not available in Oracle SQL
 raise_query ="""
             SELECT employee_id, first_name, job_id, salary,
             CASE job_id
