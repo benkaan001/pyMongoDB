@@ -20,12 +20,10 @@ def get_new_salaries(query):
 # GIVE THE CORRESPONDING RAISES TO ALL EMPLOYEES ACCORDINGLY
 # PRINT employee_id, first_name, job_id, salary, *new_salary
 # ROUND UP the salaries by 2 decimal points
-"""
-    IF job_id has '_PROG'       - 30%
-                  '_CLERK'      - 25%
-                  '_MAN'        - 20%
-                  '_REP'        - 20%
-                  ALL ELSE      - 40%
+"""               'IT_PROG'                              - 50%
+                  'PU_CLERK','ST_CLERK', 'SH_CLERK'      - 25%
+                  'SA_REP', 'MK_REP', 'HR_REP'           - 20%
+                   ALL ELSE                              - 40%
 
 """
 raise_query ="""
