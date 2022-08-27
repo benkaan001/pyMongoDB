@@ -5,20 +5,22 @@ from config import get_database
 # The first time we pass a SQL query statement to the cursor's execute method, the complier creates
 # the prepared method.
 
-#when passing multiple tuple values into the same query, ie injecting multiple rows into a table,
+# when passing multiple tuple values into the same query, ie injecting multiple rows into a table,
 # make sure to create a 'prepared statment object' this way the query gets executed directly with passed
 # parameters without being recomplied. In other words, for subsequent invocations, the preparation phase
 # is skipped if the SQL statement is the same.
 
+
 def get_it_employees(query, tuple):
-    connection=get_database()
-    cursor=connection.cursor(prepared=True)
+    connection = get_database()
+    cursor = connection.cursor(prepared=True)
     try:
-            cursor.execute(query,tuple)
-            records = cursor.fetchall()
-            for record in records:
-              print("Employee Full Name:", record[0], "\nDept_ID:", record[1], "\nJob_ID:", record[2])
-              connection.commit()
+        cursor.execute(query, tuple)
+        records = cursor.fetchall()
+        for record in records:
+            print("Employee Full Name:",
+                  record[0], "\nDept_ID:", record[1], "\nJob_ID:", record[2])
+            connection.commit()
     except mysql.connector.Error as error:
         print(f".......ERROR....{error}")
     finally:
@@ -27,14 +29,13 @@ def get_it_employees(query, tuple):
         print(".......Connection closed SUCCESSFULLY!")
 
 
-
-parameterized_query ="""
+parameterized_query = """
             SELECT CONCAT(first_name, " ", last_name) 'employee full name', department_id, job_id
             FROM hr.employees
             WHERE department_id= %s AND job_id=%s
             """
 
-data_tuple=(60, 'IT_PROG')
+data_tuple = (60, 'IT_PROG')
 
 get_it_employees(parameterized_query, data_tuple)
 
@@ -60,17 +61,18 @@ Job_ID: IT_PROG
 
 # we can also use bind the parameters
 
+
 def get_listed_employees(query):
-    connection=get_database()
-    cursor=connection.cursor()
+    connection = get_database()
+    cursor = connection.cursor()
     try:
         employee_names_list = ['Elizabeth', 'Harrison', 'Charles']
         for name in employee_names_list:
             cursor.execute(f'{query}="{name}"')
             records = cursor.fetchall()
             for record in records:
-              print("Employee Full Name:", record[0], "\nsalary:", record[1])
-              connection.commit()
+                print("Employee Full Name:", record[0], "\nsalary:", record[1])
+                connection.commit()
     except mysql.connector.Error as error:
         print(f".......ERROR....{error}")
     finally:
@@ -79,8 +81,7 @@ def get_listed_employees(query):
         print(".......Connection closed SUCCESSFULLY!")
 
 
-
-repeating_query ="""
+repeating_query = """
             SELECT CONCAT(first_name, " ", last_name) 'employee full name',
             ROUND(salary)
             FROM hr.employees
@@ -100,16 +101,17 @@ salary: 6200
 
 '''
 
+
 def get_listed_employees2(query, tuple_list):
-    connection=get_database()
-    cursor=connection.cursor(prepared=True)
+    connection = get_database()
+    cursor = connection.cursor(prepared=True)
     try:
         for name in tuple_list:
-            cursor.execute(query,name)
+            cursor.execute(query, name)
             records = cursor.fetchall()
             for record in records:
-              print("Employee Full Name:", record[0], "\nsalary:", record[1])
-              connection.commit()
+                print("Employee Full Name:", record[0], "\nsalary:", record[1])
+                connection.commit()
     except mysql.connector.Error as error:
         print(f".......ERROR....{error}")
     finally:
@@ -118,8 +120,7 @@ def get_listed_employees2(query, tuple_list):
         print(".......Connection closed SUCCESSFULLY!")
 
 
-
-repeating_query2 ="""
+repeating_query2 = """
             SELECT CONCAT(first_name, " ", last_name) 'employee full name',
             ROUND(salary)
             FROM hr.employees
