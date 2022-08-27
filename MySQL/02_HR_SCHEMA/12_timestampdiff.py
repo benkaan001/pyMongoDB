@@ -1,7 +1,6 @@
 import mysql.connector
 from config import get_database
 """
-
 SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 """
 def get_promoted_employees(query):
