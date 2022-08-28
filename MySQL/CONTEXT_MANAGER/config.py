@@ -7,8 +7,9 @@ password = os.getenv("MYSQL_PWD")
 
 
 def get_database():
-    with connect(host='localhost', user='root', password=password, database='movie_rating') as connection:
-        return connection
+    connection = connect(host='localhost', user='root',
+                         password=password, database='movie_rating')
+    return connection
 
 
 if __name__ == "__main__":
