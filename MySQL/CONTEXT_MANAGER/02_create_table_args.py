@@ -11,11 +11,14 @@ All executions become one ATOMIC transaction rather than multiple separate trans
 
 def create_table(*args):
     connection = get_database()
-    with connection.cursor() as cursor:
-        for arg in args:
-            cursor.execute(arg)
-        connection.commit()
-        print("Table crated!")
+    try:
+        with connection.cursor() as cursor:
+            for arg in args:
+                cursor.execute(arg)
+            connection.commit()
+            print("Table crated!")
+    except Error as e:
+        print(e)
 
 
 movies_table_query = """
