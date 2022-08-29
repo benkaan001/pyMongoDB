@@ -5,6 +5,8 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 password = os.getenv("MYSQL_PWD")
 
+# charset="utf8mb4" alternative argument to be passed into connect
+
 
 def get_database():
     connection = connect(host='localhost', user='root',
