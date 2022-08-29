@@ -57,6 +57,6 @@ VALUES
 """
 Transaction completed successfully!
 Printing sample record:
-[(31, 'Forrest Gump', 1994, 'Drama', Decimal('330.2'))]
+[(1, 'Forrest Gump', 1994, 'Drama', Decimal('330.2'))]
 
 """
