@@ -22,6 +22,12 @@ def remove_duplicate_records(multi_query):
 
 multi_query = """
 
+CREATE TABLE cars_backup
+AS
+SELECT DISTINCT *
+FROM cars;
+
+SELECT * FROM cars_backup;
 
 
 """
