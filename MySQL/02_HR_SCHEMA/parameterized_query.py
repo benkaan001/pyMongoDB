@@ -1,4 +1,3 @@
-from multiprocessing.spawn import prepare
 import mysql.connector
 from config import get_database
 
