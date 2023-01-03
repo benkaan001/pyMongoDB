@@ -5,7 +5,7 @@ import random
 TARGET_ROW_NUM = 100
 
 # generate data based on US and GB locale
-fake = Faker(["en_US", "en_GB"])
+fake = Faker("en_US")
 
 employees = []
 
@@ -32,6 +32,7 @@ for _ in range(TARGET_ROW_NUM + 1):
     emp_ssn = fake.ssn()
     # create address
     emp_address = fake.address()
+    emp_address = emp_address.replace("\n", "")
 
     employees.append(
         [
